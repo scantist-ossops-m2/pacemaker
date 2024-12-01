@@ -79,6 +79,9 @@ lrmd_remote_client_msg(gpointer data)
                 g_source_remove(client->remote->auth_timeout);
             }
             client->remote->auth_timeout = 0;
+
+            /* Alert other clients of the new connection */
+            notify_of_new_client(client);
         }
         return 0;
     }
